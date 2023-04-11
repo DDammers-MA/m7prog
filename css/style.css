@@ -1,0 +1,62 @@
+*, ::before, *::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 2rem;
+  font-family: sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.header {
+  width: 100%;
+  height: 15rem;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.8);
+}
+.header__happyLogo {
+  padding: 4rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.header__happyLogo i {
+  font-size: 5rem;
+}
+
+.collection {
+  height: 85%;
+  background: green;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.collection__section {
+  display: flex;
+  flex-wrap: wrap;
+  background: red;
+  padding: 2rem;
+  gap: 2rem;
+}
+.collection__section--left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.collection__article {
+  background: blue;
+  height: 15rem;
+  width: 45%;
+}
+
+/*# sourceMappingURL=style.css.map */
