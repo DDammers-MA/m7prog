@@ -36,27 +36,118 @@ body {
 }
 
 .collection {
-  height: 85%;
-  background: green;
+  height: 75%;
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 40% 60%;
 }
-.collection__section {
+
+.sectionLeft {
   display: flex;
   flex-wrap: wrap;
-  background: red;
   padding: 2rem;
-  gap: 2rem;
-}
-.collection__section--left {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 2rem;
 }
-.collection__article {
-  background: blue;
+.sectionLeft__article {
+  background-image: url(../../../img/temple_grandin_without_soh_270_270_s_c1.jpg);
+  height: 18rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 35%;
+  position: relative;
+  transition: 0.2s all;
+  border-radius: 0.5rem;
+}
+.sectionLeft__article:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.sectionLeft__article--audio {
+  height: 20rem;
+  width: 40rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.sectionLeft__date {
+  font-size: 100%;
+  font-family: sans-serif;
+  font-weight: 500;
+  height: 2rem;
+  position: absolute;
+  right: 0;
+  border-radius: 0 0.5rem 0 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+.sectionLeft__img {
+  height: 12rem;
+  aspect-ratio: 1/1;
+}
+.sectionLeft__title {
+  position: absolute;
+  bottom: 1%;
+  left: 0;
+}
+
+.sectionRight {
+  display: flex;
+  align-items: center;
+  padding: 3rem;
+  flex-direction: column;
+}
+.sectionRight__article {
+  background-image: url(../../../img/temple_grandin_without_soh_270_270_s_c1.jpg);
   height: 15rem;
-  width: 45%;
+  width: 70%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.sectionRight__date {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.sectionRight__title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.sectionRight__textArea {
+  padding: 2rem;
+  width: 75%;
+}
+.sectionRight__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem;
+  width: 80%;
+}
+.sectionRight__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20rem;
+  background: black;
+  border-radius: 0.5rem;
+  color: white;
+  position: relative;
+  border: none;
+  font-size: 110%;
+}
+.sectionRight__button--source {
+  border: none;
+  background: none;
+  position: absolute;
+  right: 6%;
+  color: black;
+}
+.sectionRight__button:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */
