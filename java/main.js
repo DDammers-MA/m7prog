@@ -11,7 +11,9 @@ class GetDataFromApi {
       .then(function (response) {
         return response.json();
       }).then((data) => {
-        this.data = data;
+       
+        const shuffledData = data["episodes"].sort(() => 0.5 - Math.random());
+        this.data = shuffledData.slice(0, 4);
       });
     return this.data;
   }
@@ -52,14 +54,14 @@ class HappyMain {
   leftSection;
   rightSection;
 
-  constructor(placeToRenderMain) {
+  constructor(placeToRenderMain, data) {
     this.placeToRenderMain = document.getElementsByTagName(placeToRenderMain)[0];
     this.mainElement = document.createElement("main");
     this.mainElement.classList = "collection";
 
-    this.leftSection = new happyLeftSection(this.mainElement);
+    this.leftSection = new happyLeftSection(this.mainElement, data);
 
-    this.rightSection = new happyRightSection(this.mainElement, this);
+    this.rightSection = new happyRightSection(this.mainElement, data);
     
   }
 
@@ -72,37 +74,38 @@ class HappyMain {
 
 
 class happyLeftSection {
-
   leftSection;
-  sectionFigure;
-  figureDate;
-  figureTitle;
   leftSectionElement;
   mainElement;
+  data;
 
-  constructor(mainElement) {
-
+  constructor(mainElement, data) {
     this.mainElement = mainElement;
+    this.data = data
     this.leftSectionElement = document.createElement("section");
     this.leftSectionElement.classList = "sectionLeft";
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < data.length; i++) {
       this.sectionFigure = document.createElement("figure");
       this.sectionFigure.classList = "sectionLeft__article";
+      this.sectionFigure.style.backgroundImage = "url(img/img2.webp)";
+
       this.figureDate = document.createElement("p");
+      this.figureDate.innerText = this.data[i]["date (dd-mm-yyyy)"];
       this.figureDate.classList = "sectionLeft__date";
+
       this.figureTitle = document.createElement("p");
       this.figureTitle.classList = "sectionLeft__title";
+      this.figureTitle.innerText = this.data[i]["title"];
 
-
-      this.leftSectionElement.appendChild(this.sectionFigure);
       this.sectionFigure.appendChild(this.figureDate);
       this.sectionFigure.appendChild(this.figureTitle);
+
+      this.leftSectionElement.appendChild(this.sectionFigure);
     }
   }
 
   render() {
-  
     this.mainElement.appendChild(this.leftSectionElement);
   }
 }
@@ -121,12 +124,15 @@ class happyRightSection{
   buttonsElement;
   buttonAdudioElement;
   buttonSourceElement;
+  
 
 
 
-    constructor(mainElement, HappyMain) {
+    constructor(mainElement, HappyMain, data) {
       this.mainElement = mainElement;
       this.HappyMain = HappyMain;
+      this.data = data;
+      
 
       this.rightSectionElement = document.createElement("section");
       this.rightSectionElement.classList = "sectionRight";
@@ -136,10 +142,11 @@ class happyRightSection{
 
       this.figureDate = document.createElement("p");
       this.figureDate.classList = "sectionLeft__date";
-
+      
+    
       this.figureTitle = document.createElement("p");
       this.figureTitle.classList = "sectionLeft__title";
-
+  
       this.audioElement = document.createElement("audio");
       
       this.articleElement = document.createElement("article");
@@ -191,16 +198,16 @@ class happyRightSection{
 
 
 
-
 class App {
   constructor() {
     this.Header = new Header("body");
-    this.main = new HappyMain("body");
+    this.getDataFromApi = new GetDataFromApi("./data/data.json");
 
-    this.getDataFromApi = new GetDataFromApi("./data/data.json")
-
-    this.Header.render();
-    this.main.render();
+    this.getDataFromApi.getData().then((data) => {
+      this.main = new HappyMain("body", data);
+      this.Header.render();
+      this.main.render();
+    });
   }
 }
 
