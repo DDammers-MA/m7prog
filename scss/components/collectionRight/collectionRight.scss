@@ -5,11 +5,14 @@
         align-items: center;
         padding: 3rem;
         flex-direction: column;
+        
+        
 
         &__article{
-            background-image: url(../../../img/temple_grandin_without_soh_270_270_s_c1.jpg);
+            background-image: url();
             height: 15rem;
             width: 70%;
+            border-radius: 0.5rem;
             background-size: cover;
             background-repeat: no-repeat;
             position: relative;

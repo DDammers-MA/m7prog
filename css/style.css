@@ -51,7 +51,6 @@ body {
   gap: 2rem;
 }
 .sectionLeft__article {
-  background-image: url(../../../img/temple_grandin_without_soh_270_270_s_c1.jpg);
   height: 18rem;
   display: flex;
   align-items: center;
@@ -100,9 +99,10 @@ body {
   flex-direction: column;
 }
 .sectionRight__article {
-  background-image: url(../../../img/temple_grandin_without_soh_270_270_s_c1.jpg);
+  background-image: url();
   height: 15rem;
   width: 70%;
+  border-radius: 0.5rem;
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
