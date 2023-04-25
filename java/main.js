@@ -53,6 +53,7 @@ class HappyMain {
   placeToRenderMain;
   leftSection;
   rightSection;
+  happyFooter;
 
   constructor(placeToRenderMain, data) {
     this.placeToRenderMain = document.getElementsByTagName(placeToRenderMain)[0];
@@ -61,13 +62,14 @@ class HappyMain {
 
     this.rightSection = new happyRightSection(this.mainElement, this, data, this.leftSection);
     this.leftSection = new happyLeftSection(this.mainElement, data, this.rightSection);
-    
+    this.happyFooter = new Footer("body");
   }
 
   render() {
     this.placeToRenderMain.appendChild(this.mainElement);
     this.leftSection.render();
     this.rightSection.render();
+    this.happyFooter.render();
   }
 }
 
@@ -78,13 +80,16 @@ class happyLeftSection {
   mainElement;
   data;
   happyRightSection;
+  footer;
   
 
   
-  constructor(mainElement, data , happyRightSection) {
+  constructor(mainElement, data , happyRightSection, footer) {
     this.mainElement = mainElement;
     this.data = data;
     this.happyRightSection = happyRightSection;
+    this.footer = footer;
+
 
     this.leftSectionElement = document.createElement("section");
     this.leftSectionElement.classList = "sectionLeft";
@@ -131,7 +136,7 @@ class happyLeftSection {
 }
 
 
-class happyRightSection{
+class happyRightSection {
     
   mainElement;
   rightSectionElement;
@@ -146,56 +151,61 @@ class happyRightSection{
   buttonSourceElement;
   data;
 
-  changeRightSection;  
+  changeRightSection;
 
 
 
-    constructor(mainElement, HappyMain, data , happyLeftSection)  {
-      this.mainElement = mainElement;
-      this.HappyMain = HappyMain;
-      this.data = data;
-      this.happyLeftSection = happyLeftSection;
+  constructor(mainElement, HappyMain, data, happyLeftSection) {
+    this.mainElement = mainElement;
+    this.HappyMain = HappyMain;
+    this.data = data;
+    this.happyLeftSection = happyLeftSection;
   
 
 
-      this.rightSectionElement = document.createElement("section");
-      this.rightSectionElement.classList = "sectionRight";
+    this.rightSectionElement = document.createElement("section");
+    this.rightSectionElement.classList = "sectionRight";
 
-      this.sectionFigure = document.createElement("figure");
-      this.sectionFigure.classList = "sectionRight__article";
-      this.sectionFigure.style.backgroundImage = "url(img/img1.webp)"
+    this.sectionFigure = document.createElement("figure");
+    this.sectionFigure.classList = "sectionRight__article";
+    this.sectionFigure.style.backgroundImage = "url(img/img1.webp)"
 
-      this.figureDate = document.createElement("p");
-      this.figureDate.classList = "sectionLeft__date";
-      this.figureDate.innerText = "02-03-2023";
+    this.figureDate = document.createElement("p");
+    this.figureDate.classList = "sectionLeft__date";
+    this.figureDate.innerText = "02-03-2023";
       
-      this.figureTitle = document.createElement("p");
-      this.figureTitle.classList = "sectionLeft__title";
-      this.figureTitle.innerText = "Why We Need Friends with Shared Interest";
+    this.figureTitle = document.createElement("p");
+    this.figureTitle.classList = "sectionLeft__title";
+    this.figureTitle.innerText = "Why We Need Friends with Shared Interest";
     
-      this.audioElement = document.createElement("audio");
+    this.audioElement = document.createElement("audio");
+    this.audioElement.classList = "sectionRight__audio"
       
       
         
-      this.articleElement = document.createElement("article");
-      this.articleElement.classList = "sectionRight__textArea";
-      this.articleElement.innerText = "She's the world's leading animal behaviorist and an Autism advocacy leader. Guest Temple Grandin shares what kind of support systems led her to success, and we hear about how community, and lack thereof, affects our health and ability to succeed."
+    this.articleElement = document.createElement("article");
+    this.articleElement.classList = "sectionRight__textArea";
+    this.articleElement.innerText = "She's the world's leading animal behaviorist and an Autism advocacy leader. Guest Temple Grandin shares what kind of support systems led her to success, and we hear about how community, and lack thereof, affects our health and ability to succeed."
 
-      this.textRightELement = document.createElement("p");
-      this.textRightELement.classList = "sectionRight__textRight";
+    this.textRightELement = document.createElement("p");
+    this.textRightELement.classList = "sectionRight__textRight";
 
-      this.buttonsElement = document.createElement("div");
-      this.buttonsElement.classList = "sectionRight__buttons";
+    this.buttonsElement = document.createElement("div");
+    this.buttonsElement.classList = "sectionRight__buttons";
 
-      this.buttonAudioElement = document.createElement("button");
-      this.buttonAudioElement.classList = "sectionRight__button";
-      this.buttonAudioElement.innerText = "audio";
+    this.buttonAudioElement = document.createElement("button");
+    this.buttonAudioElement.classList = "sectionRight__button";
+    this.buttonAudioElement.innerText = "audio";
 
       
 
-      this.buttonSourceElement = document.createElement("button");
-      this.buttonSourceElement.classList = "sectionRight__button sectionRight__button--source";
-      this.buttonSourceElement.innerText = "source >";
+    this.buttonSourceElement = document.createElement("button");
+    this.buttonSourceElement.classList = "sectionRight__button sectionRight__button--source";
+    this.buttonSourceElement.innerText = "source >";
+    this.buttonSourceElement.addEventListener('click', () => {
+      window.location.href = data.episodes[clickedEpisode].url;
+    });
+
       
 
       
@@ -209,13 +219,28 @@ class happyRightSection{
     this.figureDate.innerText = clickedEpisode["date (dd-mm-yyyy)"];
     this.figureTitle.innerText = clickedEpisode.title;
     this.audioElement.src = clickedEpisode.audio;
-    this.audioElement.setAttribute("controls", "");
-    this.buttonAudioElement.addEventListener('click', () => {
-      this.audioElement.play();
+
+    this.buttonSourceElement.addEventListener('click', () => {
+      window.location.href = clickedEpisode.url;
     });
-
-
+  
+    this.sectionFigure.addEventListener('click', () => {
+      this.audioElement.removeAttribute('controls');
+    });
+  
+    this.buttonAudioElement.addEventListener('click', () => {
+      if (this.audioElement.hasAttribute("controls")) {
+        this.audioElement.removeAttribute("controls");
+        this.audioElement.pause();
+      } else {
+        this.audioElement.setAttribute("controls", "");
+        this.audioElement.play();
+      }
+    });
   }
+
+
+  
   render() {
     this.mainElement.appendChild(this.rightSectionElement);
 
@@ -233,10 +258,32 @@ class happyRightSection{
   }
 
 }
+
+class Footer {
+  placeToRenderFooter;
+  footerElement;
+  footerTitleElement;
+
+  constructor(placeToRenderFooter) {
+    this.placeToRenderFooter = document.getElementsByTagName(placeToRenderFooter)[0];
+    this.footerElement = document.createElement("footer");
+    this.footerElement.classList = "footer";
+    this.footerTitleElement = document.createElement("h4");
+    this.footerTitleElement.classList = "footer__h4";
+    this.footerTitleElement.innerText = "Gemaakt door Daniel Dammers SD2D Mediacollege";
+  }
+
+  render() {
+    this.placeToRenderFooter.appendChild(this.footerElement);
+    this.footerElement.appendChild(this.footerTitleElement);
+  }
+}
+
   
 class App {
   constructor() {
     this.Header = new Header("body");
+    this.happyFooter = new Footer("body");
     this.getDataFromApi = new GetDataFromApi("./data/data.json");
 
 
@@ -244,6 +291,8 @@ class App {
       this.main = new HappyMain("body", data);
       this.Header.render();
       this.main.render();
+      
+      
     });
   }
 }

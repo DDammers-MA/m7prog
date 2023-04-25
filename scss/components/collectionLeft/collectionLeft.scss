@@ -1,10 +1,12 @@
+@use "../../abstracts/colors";
+@use "../../abstracts/mixins";
 .sectionLeft{        
     display: flex;
     flex-wrap: wrap;
     padding: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+    @include mixins.flex;
+    
     gap: 2rem;
 
     
@@ -44,7 +46,7 @@
    right: 0;
      border-radius: 0 0.5rem 0 0;
    background: rgba(0, 0, 0,0.7);
-   color: white;
+   color:map-get(colors.$baseColors, "white") ;
      
  }
  

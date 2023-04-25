@@ -1,6 +1,7 @@
-
+@use "../../abstracts/colors";
+@use "../../abstracts/mixins";
 .sectionRight{
-     
+
         display: flex;
         align-items: center;
         padding: 3rem;
@@ -36,6 +37,10 @@
             width: 75%;
         }
 
+        &__audio{
+            padding: 1rem;
+        }
+
         &__buttons{
             display: flex;
             align-items: center;
@@ -46,12 +51,11 @@
         }
 
         &__button{
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include mixins.flex;
+    
 
             width: 20rem;
-            background: black;
+            background: map-get(colors.$baseColors, "black");
             border-radius: 0.5rem;
             color: white;
             position: relative;
@@ -63,7 +67,7 @@
                 background: none;
                 position: absolute;
                 right: 6%;
-                color: black;
+                color: map-get(colors.$baseColors, "black");
             
             }
 

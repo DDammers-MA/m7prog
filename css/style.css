@@ -14,13 +14,13 @@ body {
 }
 
 body {
-  width: 100vw;
   height: 100vh;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .header {
   width: 100%;
-  height: 10rem;
+  height: 9rem;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.8);
 }
 .header__happyLogo {
@@ -36,9 +36,10 @@ body {
 }
 
 .collection {
-  height: 75%;
+  height: 85%;
   display: grid;
   grid-template-columns: 40% 60%;
+  background: linear-gradient(to bottom right, #F7FD04, #F9B208, #F98404, #FC5404);
 }
 
 .sectionLeft {
@@ -79,7 +80,7 @@ body {
   right: 0;
   border-radius: 0 0.5rem 0 0;
   background: rgba(0, 0, 0, 0.7);
-  color: white;
+  color: #FFFFFF;
 }
 .sectionLeft__img {
   height: 12rem;
@@ -121,6 +122,9 @@ body {
   padding: 2rem;
   width: 75%;
 }
+.sectionRight__audio {
+  padding: 1rem;
+}
 .sectionRight__buttons {
   display: flex;
   align-items: center;
@@ -133,7 +137,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 20rem;
-  background: black;
+  background: #000000;
   border-radius: 0.5rem;
   color: white;
   position: relative;
@@ -145,10 +149,69 @@ body {
   background: none;
   position: absolute;
   right: 6%;
-  color: black;
+  color: #000000;
 }
 .sectionRight__button:hover {
   cursor: pointer;
+}
+
+.footer {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 62.5rem) {
+  .collection {
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+    height: 170vh;
+  }
+  .collection__section--left {
+    order: 2;
+    padding-top: 8rem;
+  }
+  .collection__section--right {
+    order: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .collection__section--right__buttons {
+    display: block;
+    flex-direction: column;
+  }
+  .collection__section--right__textArea {
+    width: 100%;
+  }
+  .collection__section--right__article {
+    width: 90%;
+  }
+  .collection__section--right__button--source {
+    right: 10%;
+    color: black;
+  }
+}
+@media screen and (max-width: 62.5rem) and (max-width: 27.5rem) {
+  .sectionRight__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem;
+    width: 80%;
+  }
+  .sectionRight__buttons__buttons {
+    display: block;
+    flex-direction: column;
+  }
+  .sectionRight__buttons__button--source {
+    border: none;
+    background: none;
+    width: 100%;
+    color: black;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

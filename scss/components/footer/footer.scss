@@ -1,0 +1,7 @@
+@use "../../abstracts/mixins";
+
+.footer{
+    height: 10vh;
+    @include mixins.flex;
+    
+}

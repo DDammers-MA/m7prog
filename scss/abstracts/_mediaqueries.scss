@@ -1,0 +1,72 @@
+@media screen and (max-width: 62.5rem) {
+
+
+  .collection {
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+    height: 170vh;
+
+
+    &__section {
+      &--left {
+        order: 2;
+        padding-top: 8rem;
+      }
+
+      &--right {
+        order: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        &__buttons {
+          display: block;
+          flex-direction: column;
+        }
+
+        &__textArea {
+          width: 100%;
+        }
+
+        &__article {
+          width: 90%;
+        }
+
+        &__button--source {
+
+          right: 10%;
+          color: black;
+        }
+      }
+    }
+  }
+
+
+  @media screen and (max-width: 27.5rem) {
+
+
+    .sectionRight__buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4rem;
+      width: 80%;
+
+
+
+      &__buttons {
+        display: block;
+        flex-direction: column;
+      }
+
+      &__button--source {
+        border: none;
+        background: none;
+        width: 100%;
+        color: black;
+      }
+    }
+  }
+}
